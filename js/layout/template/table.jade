@@ -1,16 +1,13 @@
 mixin columnHeader(column)
-  if column.htmlBuilder
-    != column.htmlBuilder(column)
-  else
-    if column.$orderby
-      if column.$orderby.dir > 0
-        span.grid-asc
-      else
-        span.grid-des
-    if (column && column.$html)
-      != column.$html
+  if column.$orderby
+    if column.$orderby.dir > 0
+      span.grid-asc
     else
-      = (typeof column.$text != 'undefined')? column.$text : (column.property || column)
+      span.grid-des
+  if (column && column.$html)
+    != column.$html
+  else
+    = (typeof column.$text != 'undefined')? column.$text : (column.property || column)
 
 mixin th(column, hasGroup, isSubColumn)
   - var attr = (column.$metadata || {})['attr.head'] || {}
